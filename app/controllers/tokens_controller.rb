@@ -6,7 +6,7 @@ class TokensController < ApplicationController
         jwt: encode_token({id:user.id, email: user.email})
       }
     else
-      render json: {status: "NO USER EXISTS"}
+      render json: {errors: "Invalid email or password"}, status: :unprocessable_entity
     end
   end
 

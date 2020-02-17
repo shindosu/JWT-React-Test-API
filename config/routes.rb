@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # get 'tokens/create'
-  # get 'users/create'
+  root 'api/v1/users#index'
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :users

@@ -4,13 +4,13 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(user_params)
-    if @user.save
-      payload = {user_id: @user.id, email: @user.email}
+    user = User.new(user_params)
+    if user.save
+      payload = {user_id: user.id, email: user.email}
       token = encode_token(payload)
-      render json: {status: "User created", data: @user, jwt: token}
+      render json: {status: "User created", data: user, jwt: token}
     else
-      render json: {errors: @user.errors}, status: :unprocessable_entity
+      render json: {errors: user.errors}, status: :unprocessable_entity
     end
   end
 

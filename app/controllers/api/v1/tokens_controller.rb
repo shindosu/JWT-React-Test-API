@@ -14,7 +14,8 @@ class Api::V1::TokensController < ApplicationController
   def encode_token(payload={})
     exp = 24.hours.from_now
     payload[:exp] = exp.to_i
-    JWT.encode(payload, Rails.application.secrets.secret_key_base)
+    JWT.encode(payload, ENV['SECRET_KEY_BASE'])
+    # Rails.application.secrets.secret_key_base
   end
 
 end

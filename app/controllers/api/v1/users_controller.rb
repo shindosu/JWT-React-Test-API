@@ -1,3 +1,5 @@
+require 'jwt'
+
 class Api::V1::UsersController < ApplicationController
   def index
     render json: {status: "WELCOME"}
@@ -23,6 +25,7 @@ class Api::V1::UsersController < ApplicationController
   def encode_token(payload={})
     exp = 72.hours.from_now
     payload[:exp] = exp.to_i
-    JWT.encode(payload, Rails.application.secrets.secret_key_base)
+    JWT.encode(payload, Rails.application.credentials.secret_key_base )
+    # Rails.application.secrets.secret_key_base
   end
 end
